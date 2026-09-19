@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DERILÚ - El toque especial para tus eventos</title>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Variables de color basadas en la imagen corporativa */
+        :root {
+            --color-fondo: #fcf6dc;
+            --color-principal: #ffffff;
+            --color-acento: #ffcc00;
+            --color-texto-oscuro: #5e0d0d;
+            --color-texto-mutado: #333333;
+        }
+
+        /* Estilos Generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--color-fondo);
+            color: var(--color-texto-mutado);
+            line-height: 1.6;
+        }
+
+        /* Banner de ancho completo (Largo de la página) */
+        .banner-container {
+            width: 100%;
+            background-color: #7a1111; /* Color de respaldo oscuro */
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+        }
+
+        .banner-image {
+            width: 100%;
+            height: 120px; 
+            object-fit: cover; 
+            object-position: center; 
+            display: block;
+        }
+
+        /* Menú de Navegación */
+        nav {
+            background-color: var(--color-principal);
+            border-bottom: 3px solid var(--color-acento);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        /* Botón de hamburguesa por defecto oculto en computadora */
+        .hamburger-btn {
+            display: none;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 15px 0;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--color-texto-oscuro);
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        /* Efectos al pasar el mouse por los botones */
+        nav ul li a:hover {
+            background-color: var(--color-acento);
+            color: #000000;
+        }
+
+        /* Contenido de la Página de Inicio */
+        .main-content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .slogan {
+            font-size: 2.2rem;
+            color: var(--color-texto-oscuro);
+            font-style: italic;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        /* Pie de Página / Contacto */
+        footer {
+            background-color: var(--color-principal);
+            color: var(--color-texto-oscuro);
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 2px solid var(--color-acento);
+        }
+
+        .footer-info h2 {
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-info p {
+            margin: 5px 0;
+            font-size: 1.1rem;
+        }
+
+        /* --- ESTILOS CORREGIDOS DEL CARRUSEL --- */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px; /* Ajusta el ancho en pantalla para que no sea gigante */
+            margin: 30px auto;
+            overflow: hidden; /* Corta el desborde lateral de las imágenes */
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .cintillo-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out; /* Animación fluida de deslizamiento */
+            width: 100%;
+        }
+
+        .carrusel-item {
+            min-width: 100%; /* Cada elemento toma exactamente el ancho del contenedor */
+            box-sizing: border-box;
+        }
+
+        .carrusel-item img {
+            width: 100%;
+            height: 350px; /* Altura controlada para tus imágenes */
+            object-fit: cover; /* Evita que las fotos se deformen o aplasten */
+            display: block;
+        }
+
+        /* Botones de navegación estilizados */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(94, 13, 13, 0.7); /* Color vino de tu marca con transparencia */
+            color: white;
+            border: none;
+            font-size: 20px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            z-index: 10;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+        .carousel-btn:hover {
+            background: rgba(255, 204, 0, 1); /* Cambia al amarillo de tu marca al pasar el cursor */
+            color: black;
+        }
+        .prev-btn { left: 10px; }
+        .next-btn { right: 10px; }
+
+        /* --- CONFIGURACIÓN PARA MÓVIL --- */
+        @media (max-width: 768px) {
+            .hamburger-btn {
+                display: block; 
+                font-size: 28px;
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 10px 20px;
+                color: var(--color-texto-oscuro); 
+            }
+
+            #nav-menu {
+                display: none !important; 
+                flex-direction: column;
+                width: 100%;
+                padding: 0;
+                margin: 0;
+            }
+
+            #nav-menu.show {
+                display: flex !important;
+            }
+
+            #nav-menu li {
+                width: 90%;
+                margin: 5px auto;
+            }
+
+            #nav-menu li a {
+                display: block;
+                padding: 8px 0;
+                font-size: 14px;
+                text-align: center;
+            }
+            
+            .carousel-container {
+                max-width: 90%; /* En móviles usa casi todo el ancho de pantalla */
+            }
+            .carrusel-item img {
+                height: 280px; /* Reducimos la altura en celulares */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Imagen del Banner -->
+    <div class="banner-container">
+        <img src="banner-derilu.jpg" alt="DERILU Banner" class="banner-image">
+    </div>
+
+    <!-- 2. Navegación -->
+    <nav class="nav-container">
+        <button class="hamburger-btn" id="hamburger">☰</button>
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="index.html" class="active">INICIO</a></li>
+            <li><a href="nosotros.html">NOSOTROS</a></li>
+            <li><a href="servicios.html">SERVICIOS</a></li>
+            <li><a href="galeria.html">GALERÍA</a></li>
+            <li><a href="contacto.html">CONTACTO</a></li>
+        </ul>
+    </nav>
+
+    <!-- 3. Contenido Principal -->
+    <main class="main-content">
+        <h1 class="slogan">Siempre haciendo la diferencia</h1>
+
+        <div style="display: flex; justify-content: space-around; gap: 20px; align-items: start; max-width: 1200px; margin: 0 auto; padding: 20px;">
+            <!-- 1. SERVICIOS DULCES -->
+            <a href="servicios.html#dulces" style="text-decoration: none; color: inherit; text-align: center; flex: 1;">
+                <img src="fresas.jfif" alt="Servicios Dulces" style="width: 100%; height: 220px; object-fit: cover; border-radius: 4px;">
+                <h3 style="margin-top: 15px; font-weight: bold;">Servicios Dulces</h3>
+            </a>
+
+            <!-- 2. SERVICIOS SALADOS -->
+            <a href="servicios.html#salados" style="text-decoration: none; color: inherit; text-align: center; flex: 1;">
+                <img src="charcuteria1.jfif" alt="Servicios Salados" style="width: 100%; height: 220px; object-fit: cover; border-radius: 4px;">
+                <h3 style="margin-top: 15px; font-weight: bold;">Servicios Salados</h3>
+            </a>
+
+            <!-- 3. COCTELERÍA PREMIUM -->
+            <a href="servicios.html#cocteleria" style="text-decoration: none; color: inherit; text-align: center; flex: 1;">
+                <img src="bebidas3.jfif" alt="Coctelería Premium" style="width: 100%; height: 220px; object-fit: cover; border-radius: 4px;">
+                <h3 style="margin-top: 15px; font-weight: bold;">Coctelería Premium</h3>
+            </a>
+        </div>
+    </main>
+
+    <!-- 4. Pie de Página y Carrusel -->
+    <footer>
+        <!-- NUEVO CONTENEDOR UNIFICADO DEL CARRUSEL DE IMÁGENES -->
+        <div class="carousel-container">
+            <!-- Botones direccionales -->
+            <button class="carousel-btn prev-btn" id="prevBtn">❮</button>
+            <button class="carousel-btn next-btn" id="nextBtn">❯</button>
+
+            <!-- Riel que moverá las imágenes -->
+            <div class="cintillo-track" id="carouselTrack">
+                <div class="carrusel-item"><img src="copas1.jfif" alt="Brindis"></div>
+                <div class="carrusel-item"><img src="mesa de postres1.jfif" alt="Postres"></div>
+                <div class="carrusel-item"><img src="fiesta3.jfif" alt="Fiesta"></div>
+                <div class="carrusel-item"><img src="servicio de vino.jfif" alt="Servicio de Vino"></div>
+                <div class="carrusel-item"><img src="carros snacks4.jfif" alt="Carros de Snacks"></div>
+            </div>
+        </div>
+
+    
+
+        <div class="footer-info">
+		<h1>DERILÚ</h1>
+            <p>El toque especial para tus eventos</p> 
+            <h3><a href="contacto.html">CONTACTO</a></h3>
+            <p><strong>Email:</strong> clientes_derilú@gmail.com</p>
+            <p><strong>Teléfono:</strong> (55) 5530-33-3055</p>
+        </div>
+        
+        <!-- Marcadores de Redes Sociales -->
+         <div class="redes-sociales" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px;">
+    <a href="https://wa.me" target="_blank"><img src="logo wa.jfif" alt="WhatsApp" style="width: 30px; height: 30px;"></a>
+    <a href="https://youtube.com" target="_blank"><img src="youtube.png" alt="YouTube" style="width: 30px; height: 30px;"></a>
+    <a href="https://facebook.com" target="_blank"><img src="logo fb.png" alt="Facebook" style="width: 30px; height: 30px;"></a>
+    <a href="https://instagram.com" target="_blank"><img src="instagram.jfif" alt="Instagram" style="width: 30px; height: 30px;"></a>
+</div>
+    </footer>
+<script>
+// Lógica del Menú de Hamburguesa
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+
+hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('show');
+});
+
+// LÓGICA DEL CARRUSEL CORREGIDA Y ACOPLADA A TU HTML
+const track = document.getElementById('carouselTrack');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+// Aquí cambiamos '.cintillo-item' por '.carrusel-item' para que detecte tus fotos reales
+const items = document.querySelectorAll('.carrusel-item');
+
+let currentIndex = 0;
+
+function updateCarousel() {
+    // Desplaza horizontalmente el riel multiplicando el índice por el 100%
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+}
+
+nextBtn.addEventListener('click', () => {
+    currentIndex++;
+    if (currentIndex >= items.length) {
+        currentIndex = 0; // Vuelve al primer elemento si llega al final
+    }
+    updateCarousel();
+});
+
+prevBtn.addEventListener('click', () => {
+    currentIndex--;
+    if (currentIndex < 0) {
+        currentIndex = items.length - 1; // Brinca al último elemento si retrocede desde el inicio
+    }
+    updateCarousel();
+});
+
+
+prevBtn.addEventListener('click', () => {
+  index--;
+  if (index < 0) {
+    index = items.length - 1; // Va a la última si retrocede desde el inicio
+  }
+  updateCarousel();
+});
+
+// Reajusta el tamaño si el usuario gira la pantalla del celular
+window.addEventListener('resize', updateCarousel);
+
+</script>
+<!-- Botón flotante para volver arriba -->
+<a href="#" style="position: fixed; bottom: 20px; right: 20px; background-color: #d4a373; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 24px; box-shadow: 0px 4px 6px rgba(0,0,0,0.1); z-index: 1000; font-weight: bold;">↑</a>
+<script src="https://jsdelivr.net"></script>
+</body>
+</html>
