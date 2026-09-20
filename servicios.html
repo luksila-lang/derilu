@@ -163,40 +163,14 @@ html {
             color: #555;
             margin-bottom: 20px;
         }
-
-        .lista-detalles {
-            list-style-type: square;
-            padding-left: 20px;
-            color: var(--color-texto-mutado);
-        }
-
-        .lista-detalles li {
-            margin-bottom: 8px;
-        }
-
-        /* Pie de Página */
-        footer {
-            background-color: var(--color-principal);
-            color: var(--color-texto-oscuro);
-            padding: 40px 20px;
-            text-align: center;
-            border-top: 2px solid var(--color-acento);
-        }
-
-        .footer-info h2 {
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
-
-        .footer-info p {
-            margin: 5px 0;
-            font-size: 1.1rem;
-        }
-
-        /* Diseño Adaptable Celulares */
-       /* --- CONFIGURACIÓN PARA MÓVIL --- */
-        /* Diseño Adaptable Celulares (Idéntico a Galería) */
+        /* --- CONFIGURACIÓN PARA MÓVIL (CORREGIDO) --- */
         @media (max-width: 768px) {
+            /* 1. Ajustes del Banner */
+            .banner-image {
+                height: 100px; /* Reducimos la altura en móvil para que no ocupe toda la pantalla */
+            }
+
+            /* 2. Ajustes del Menú Hamburguesa */
             .hamburger-btn {
                 display: block; /* Muestra el botón en móviles */
                 font-size: 28px;
@@ -204,35 +178,65 @@ html {
                 border: none;
                 cursor: pointer;
                 padding: 10px 20px;
-                color: var(--color-texto-oscuro); /* Mantiene el color vino de la marca */
+                color: var(--color-texto-oscuro); 
             }
 
             #nav-menu {
-                display: none !important; 
+                display: none; /* Oculto por defecto hasta que JS actúe */
                 flex-direction: column;
                 width: 100%;
-                padding: 0;
+                padding: 10px 0;
                 margin: 0;
             }
 
-            /* Activador cuando JavaScript añade la clase .show */
             #nav-menu.show {
-                display: flex !important;
+                display: flex;
             }
 
-            /* Estilos de los botones para que se adapten al contenedor */
             #nav-menu li {
-                width: 90%;
-                margin: 5px auto;
+                width: 100%;
+                margin: 5px 0;
+                text-align: center;
             }
 
             #nav-menu li a {
                 display: block;
-                padding: 8px 0;
-                font-size: 14px;
-                text-align: center;
+                padding: 10px 0;
+                font-size: 1rem;
+            }
+
+            /* 3. Ajustes de los Títulos */
+            .titulo-seccion {
+                font-size: 1.8rem; /* Letra más pequeña para que no se desborde */
+                margin-bottom: 25px;
+            }
+
+            /* 4. REVOLUCIÓN RESPONSIVA: Bloques de servicios verticalizados */
+            .servicio-bloque, 
+            .servicio-bloque.invertido {
+                flex-direction: column; /* Apila la foto arriba y el texto abajo */
+                margin-bottom: 30px;
+            }
+
+            .servicio-foto {
+                width: 100%;
+                height: 250px; /* Reducimos un poco la altura de la foto en celular */
+                min-width: unset; /* Eliminamos el mínimo de computadora */
+            }
+
+            .servicio-info {
+                padding: 25px 20px; /* Reducimos los márgenes internos excesivos */
+            }
+
+            .servicio-info h3 {
+                font-size: 1.4rem;
+            }
+
+            .servicio-info p, .lista-detalles li {
+                font-size: 1rem;
             }
         }
+
 
     </style>
 </head>
